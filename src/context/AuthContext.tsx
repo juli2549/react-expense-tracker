@@ -25,8 +25,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = (username: string, password: string): boolean => {
-    // Simple validation - in a real app, this would be server-side
-    if (username && password) {
+    // Static validation - only admin/admin works
+    if (username === 'admin' && password === 'admin') {
       setUser(username);
       setIsAuthenticated(true);
       localStorage.setItem('expenseTrackerUser', username);

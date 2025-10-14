@@ -22,7 +22,7 @@ const Login = () => {
     if (login(username, password)) {
       navigate('/dashboard');
     } else {
-      setError('Invalid username or password');
+      setError('Invalid credentials. Use admin/admin');
     }
   };
 
@@ -49,6 +49,7 @@ const Login = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder="admin"
                 required
               />
             </div>
@@ -59,6 +60,7 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="admin"
                 required
               />
             </div>
@@ -66,7 +68,7 @@ const Login = () => {
           <CardFooter className="flex flex-col">
             <Button type="submit" className="w-full">Sign In</Button>
             <div className="mt-4 text-sm text-gray-500">
-              <p>Demo credentials: any username/password works</p>
+              <p>Demo credentials: admin / admin</p>
             </div>
           </CardFooter>
         </form>
