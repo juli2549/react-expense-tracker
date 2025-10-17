@@ -31,19 +31,19 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100" data-test-id="login-page">
-      <Card className="w-full max-w-md" data-test-id="login-card">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100" data-testid="login-page">
+      <Card className="w-full max-w-md" data-testid="login-card">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center" data-test-id="login-title">Expense Tracker</CardTitle>
-          <CardDescription className="text-center" data-test-id="login-description">Sign in to your account</CardDescription>
+          <CardTitle className="text-2xl font-bold text-center" data-testid="login-title">Expense Tracker</CardTitle>
+          <CardDescription className="text-center" data-testid="login-description">Sign in to your account</CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit} data-test-id="login-form">
+        <form onSubmit={handleSubmit} data-testid="login-form">
           <CardContent className="space-y-4">
             {error && (
-              <div className="text-red-500 text-sm text-center" data-test-id="login-error">{error}</div>
+              <div className="text-red-500 text-sm text-center" data-testid="login-error">{error}</div>
             )}
             <div className="space-y-2">
-              <Label htmlFor="username" data-test-id="username-label">Username</Label>
+              <Label htmlFor="username" data-testid="username-label">Username</Label>
               <Input
                 id="username"
                 type="text"
@@ -51,11 +51,11 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="admin"
                 required
-                data-test-id="username-input"
+                data-testid="username-input"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" data-test-id="password-label">Password</Label>
+              <Label htmlFor="password" data-testid="password-label">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -63,13 +63,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="admin"
                 required
-                data-test-id="password-input"
+                data-testid="password-input"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-            <Button type="submit" className="w-full" data-test-id="login-button">Sign In</Button>
-            <div className="mt-4 text-sm text-gray-500" data-test-id="demo-credentials">
+            <Button type="submit" className="w-full" data-testid="login-button">Sign In</Button>
+            <div className="mt-4 text-sm text-gray-500" data-testid="demo-credentials">
               <p>Demo credentials: admin / admin</p>
             </div>
           </CardFooter>
