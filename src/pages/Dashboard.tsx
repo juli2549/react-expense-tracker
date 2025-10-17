@@ -57,13 +57,13 @@ const Dashboard = () => {
   const totalExpenses = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
+    <div className="min-h-screen bg-gray-100" data-test-id="dashboard-page">
+      <header className="bg-white shadow" data-test-id="dashboard-header">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">Expense Tracker</h1>
+          <h1 className="text-3xl font-bold text-gray-900" data-test-id="dashboard-title">Expense Tracker</h1>
           <div className="flex items-center space-x-4">
-            <span className="text-gray-700">Welcome, {user}!</span>
-            <Button onClick={handleLogout} variant="outline">Logout</Button>
+            <span className="text-gray-700" data-test-id="user-welcome">Welcome, {user}!</span>
+            <Button onClick={handleLogout} variant="outline" data-test-id="logout-button">Logout</Button>
           </div>
         </div>
       </header>
@@ -72,26 +72,27 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Add Expense Form */}
           <div className="lg:col-span-1">
-            <Card>
+            <Card data-test-id="add-expense-card">
               <CardHeader>
-                <CardTitle>Add New Expense</CardTitle>
-                <CardDescription>Track your spending</CardDescription>
+                <CardTitle data-test-id="add-expense-title">Add New Expense</CardTitle>
+                <CardDescription data-test-id="add-expense-description">Track your spending</CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleAddExpense} className="space-y-4">
+                <form onSubmit={handleAddExpense} className="space-y-4" data-test-id="add-expense-form">
                   <div className="space-y-2">
-                    <Label htmlFor="description">Description</Label>
+                    <Label htmlFor="description" data-test-id="description-label">Description</Label>
                     <Input
                       id="description"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="What did you spend on?"
                       required
+                      data-test-id="description-input"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="amount">Amount ($)</Label>
+                    <Label htmlFor="amount" data-test-id="amount-label">Amount ($)</Label>
                     <Input
                       id="amount"
                       type="number"
@@ -100,26 +101,28 @@ const Dashboard = () => {
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0.00"
                       required
+                      data-test-id="amount-input"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
+                    <Label htmlFor="category" data-test-id="category-label">Category</Label>
                     <select
                       id="category"
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                       className="w-full p-2 border rounded-md"
+                      data-test-id="category-select"
                     >
-                      <option value="Food">Food</option>
-                      <option value="Transportation">Transportation</option>
-                      <option value="Entertainment">Entertainment</option>
-                      <option value="Utilities">Utilities</option>
-                      <option value="Other">Other</option>
+                      <option value="Food" data-test-id="category-food">Food</option>
+                      <option value="Transportation" data-test-id="category-transportation">Transportation</option>
+                      <option value="Entertainment" data-test-id="category-entertainment">Entertainment</option>
+                      <option value="Utilities" data-test-id="category-utilities">Utilities</option>
+                      <option value="Other" data-test-id="category-other">Other</option>
                     </select>
                   </div>
                   
-                  <Button type="submit" className="w-full">Add Expense</Button>
+                  <Button type="submit" className="w-full" data-test-id="add-expense-button">Add Expense</Button>
                 </form>
               </CardContent>
             </Card>
@@ -127,41 +130,41 @@ const Dashboard = () => {
           
           {/* Expense List */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card data-test-id="expense-list-card">
               <CardHeader>
                 <div className="flex justify-between items-center">
                   <div>
-                    <CardTitle>Recent Expenses</CardTitle>
-                    <CardDescription>Your spending history</CardDescription>
+                    <CardTitle data-test-id="expense-list-title">Recent Expenses</CardTitle>
+                    <CardDescription data-test-id="expense-list-description">Your spending history</CardDescription>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-500">Total Expenses</p>
-                    <p className="text-2xl font-bold">${totalExpenses.toFixed(2)}</p>
+                    <p className="text-sm text-gray-500" data-test-id="total-expenses-label">Total Expenses</p>
+                    <p className="text-2xl font-bold" data-test-id="total-expenses-amount">${totalExpenses.toFixed(2)}</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 {expenses.length === 0 ? (
-                  <p className="text-center text-gray-500 py-4">No expenses recorded yet</p>
+                  <p className="text-center text-gray-500 py-4" data-test-id="no-expenses-message">No expenses recorded yet</p>
                 ) : (
-                  <Table>
+                  <Table data-test-id="expenses-table">
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Description</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
+                        <TableHead data-test-id="description-header">Description</TableHead>
+                        <TableHead data-test-id="category-header">Category</TableHead>
+                        <TableHead data-test-id="date-header">Date</TableHead>
+                        <TableHead className="text-right" data-test-id="amount-header">Amount</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {expenses.map((expense) => (
-                        <TableRow key={expense.id}>
-                          <TableCell className="font-medium">{expense.description}</TableCell>
-                          <TableCell>
-                            <Badge variant="secondary">{expense.category}</Badge>
+                        <TableRow key={expense.id} data-test-id={`expense-row-${expense.id}`}>
+                          <TableCell className="font-medium" data-test-id={`expense-description-${expense.id}`}>{expense.description}</TableCell>
+                          <TableCell data-test-id={`expense-category-${expense.id}`}>
+                            <Badge variant="secondary" data-test-id={`expense-category-badge-${expense.id}`}>{expense.category}</Badge>
                           </TableCell>
-                          <TableCell>{expense.date}</TableCell>
-                          <TableCell className="text-right">${expense.amount.toFixed(2)}</TableCell>
+                          <TableCell data-test-id={`expense-date-${expense.id}`}>{expense.date}</TableCell>
+                          <TableCell className="text-right" data-test-id={`expense-amount-${expense.id}`}>${expense.amount.toFixed(2)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
